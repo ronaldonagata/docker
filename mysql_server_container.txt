@@ -1,0 +1,8 @@
+# Create a docker container for mysql sever
+docker run --name <mysql56> -e MYSQL_USER=myuser -e MYSQL_ROOT_PASSWORD=root -e MYSQL_PASSWORD=myuser -e MYSQL_DATABASE=myuser -p 3360:3306 -d mysql/mysql-server:5.6
+
+#In my case I granted all the privileges to my new user. 
+docker exec -it <mysql56> bin/bash/
+    #Mysql commands
+    grant all privileges on *.* to 'myuser'@'%' with grant option;
+    flush privileges;
