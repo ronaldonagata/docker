@@ -1,0 +1,24 @@
+# Docker automatically create a network called bridge, with the bridge driver. 
+# When you instantiate a container and you don't specify the network, 
+# the container will belong to the default bridge network  
+
+# Any containers on the same network may communicate with one another via IP addresses. 
+# Docker does not support automatic service discovery on bridge. You must connect containers 
+# with the --link option in your docker run command.
+
+# Driver None
+# This offers a container-specific network stack that lacks a network interface.
+# This container only has a local loopback interface (i.e., no external network interface).
+
+# Driver Host
+# This enables a container to attach to your host’s network (meaning the configuration inside 
+# the container matches the configuration outside the container).
+
+
+#View the docker networks
+docker network ls
+
+#Inspect network
+docker network inspect <network>
+
+
