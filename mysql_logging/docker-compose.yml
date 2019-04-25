@@ -1,0 +1,16 @@
+version: '3.6'
+services:
+  mysql:
+    image: mysql:latest
+    environment: 
+      MYSQL_ROOT_PASSWORD: hybris
+      MYSQL_DATABASE: hybris
+      MYSQL_USER: hybris
+      MYSQL_PASSWORD: hybris     
+    volumes:
+      - ./state/mysql:/var/lib/mysql
+      - ./script/:/docker-entrypoint-initdb.d/
+      - ./state/log/mysql:/var/log/mysql/
+      - ./script/my.cnf:/etc/mysql/my.cnf
+    ports:
+      - "3306:3306"
