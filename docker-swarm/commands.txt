@@ -1,0 +1,34 @@
+#List virtual machines
+docker-machine ls
+
+#Create virtual machines with virtualbox as driver 
+docker-machine create -d virtualbox <name>
+
+#Start machine VM
+docker-machine start <name>
+
+#Connect via ssh to VM
+docker-machine ssh <name>
+
+#Init swarm in a virtual machine, this node will be the first manager
+docker swarm init --advertise-addr <IP_HOST_ADDRESS> 
+
+#Show token to join as worker
+docker swarm join-token worker
+
+#Commands which change or show swarm status must be executed in manager node 
+#Show node information, must be executed in manager node
+docker node ls
+
+#Docker swarm leave
+docker swarm leave
+
+#Create service
+docker service create -p 8080:3000 aluracursos/barbearia
+
+#List service in swarm
+docker service ls
+
+# Use the folder /var/lib/docker/swarm as backup folder to create the new cluster
+docker swarm init --force-new-cluster --advertise-addr <IP_HOST_ADDRESS> 
+
