@@ -32,3 +32,5 @@ docker service ls
 # Use the folder /var/lib/docker/swarm as backup folder to create the new cluster
 docker swarm init --force-new-cluster --advertise-addr <IP_HOST_ADDRESS> 
 
+# Change e manager to a worker node 
+docker node demote <nodeId>
