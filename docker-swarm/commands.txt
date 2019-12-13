@@ -32,19 +32,23 @@ docker service ls
 # Use the folder /var/lib/docker/swarm as backup folder to create the new cluster
 docker swarm init --force-new-cluster --advertise-addr <IP_HOST_ADDRESS> 
 
-# Change e manager to a worker node 
+# Change manager role to worker node 
 docker node demote <nodeId>
 
-#Mudar status de um nó
+#Change status node
 docker node update --availability <status> <node>
 
-#Add constraint to restrict to run in worker nodes only
+#Add constraint to restrict to run in worker nodes only. There's anothers constraints
 docker service update --constraint-add node.role==worker <serviceId>
 
 #Change replicas numbers 
 docker service update --replicas 8 <serviceID>
 
-# Up as global service
+# Up as global service. Global service run one instance in every node
 docker service create -p 8080:3000 --mode global aluracursos/barbearia 
 
-#Create
+#Create a network overlay that could attach a standlone containers with the flag "attachable"
+docker network create -d overlay --attachable my_overlay
+
+#Create a service that is attached to a user definied network. In this way you can use service discovery
+docker service create --name my_service --network=myoverlay --replicas 2 alpine sleep 1d
